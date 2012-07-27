@@ -10,10 +10,6 @@ class Message < ActiveRecord::Base
   after_create :destroy_extent_messages
   after_destroy :decremeny_number_of_messages
 
-  def clas
-    @@number_of_messages
-  end
-
   private
 
   def destroy_extent_messages
