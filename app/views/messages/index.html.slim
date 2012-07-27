@@ -1,0 +1,20 @@
+h1 Chat
+
+.well
+  ul
+
+    - @messages.each do |message|
+      li.message
+        span.blue= message.created_at.strftime("%H:%M") << " (" << message.user.email << "): "
+        = message.text
+        - if current_user.try(:id) == message.user_id && message.created_at > (Time.zone.now - 15.minutes)
+          span.links
+            = " ("
+            = link_to 'Edit', edit_message_path(message)
+            = " | "
+            = link_to 'Destroy', message, :method => :delete
+            = ")"
+br
+
+  = render 'form'
+  = link_to "Refresh", root_path, class: "btn refresh_button"

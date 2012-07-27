@@ -1,0 +1,31 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title= content_for?(:title) ? yield(:title) : "Chat"
+    = csrf_meta_tags
+    = javascript_include_tag "application"
+
+    /! Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    = stylesheet_link_tag "application", :media => "all"
+
+
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+          = link_to "Chat", root_path, class: :brand
+          .toolbar_link
+            - if current_user
+              =link_to "Sign out", destroy_user_session_path, method: :delete
+            - else
+              =link_to "Sign in", new_user_session_path
+
+    .container-fluid
+      .span9
+        = yield

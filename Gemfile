@@ -9,12 +9,26 @@ gem "jquery-rails"
 gem "devise"
 gem "slim"
 gem "slim-rails"
+gem "twitter-bootstrap-rails"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
 
+
+group :development, :test do
+  gem "rspec-rails", ">= 2.0.1"
+end
+
+group :development do
+  gem "pry-rails"
+end
+
+group :test do
+  gem "factory_girl_rails"
+  gem "shoulda-matchers"
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
